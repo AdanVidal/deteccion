@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook inicio...</title>
+<meta charset="UTF-8">
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="main.js"></script>
+
+<!-- lastest compiled and minifieed CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- opyional theme-->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <h1>Iniciar sesión en Facebook para detectar Emociones</h1>
+    <h2>hola banda</h2>
+    
+    <a href="#" id="login" class="btn btn-primary">Iniciar sesión</a>
+    <script>
+        //Loas the sdk asynchronously
+        (function(d, s, id){
+            var js, fjs=d.getElementsByTagName(s)[0];
+            if(d.getElementsById(id)) return;
+            js=d.createElement(s); js.id=id;
+            js.src="https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js,fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+<button onclick="onLogin();">Iniciar sesion con facebook </button>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '4850449488299795',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v12.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+  function onLogin(){
+	  FB.login((response)=>{
+		  if(response.authResponse){
+			  FB.api('/me?fields=email, name, picture',(response)=>{
+				  console.log(response)
+			  })
+		  }
+	  })
+  }
+    (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</body>
+</html>
