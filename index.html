@@ -20,7 +20,12 @@
     <h2>hola banda</h2>
 	
 	<script>
-
+        var div_session="<div id='facebook-session'>"+
+            "<strong></strong>"+
+            "<img>"+
+            "<a href='#' id='logout' class='btn btn-danger'>Cerrar sesión</a>"+
+            "</div>";
+    
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
     console.log(response);                   // The current login status of the person.
@@ -43,6 +48,7 @@
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '4850449488299795',
+      status     : true,
       cookie     : true,                     // Enable cookies to allow the server to access the session.
       xfbml      : true,                     // Parse social plugins on this webpage.
       version    : 'v12.0'           // Use this Graph API version for this call.
@@ -58,6 +64,11 @@
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
+      $('#login').after(div_session);
+          $('#login').remove();
+          $('#facebook-session strong').text("Bienvenido: "+response.name);
+          $('#facebook-session img').attr('src','http://graph.facebook.com/'+
+                  response.id + '/picture?type=large');
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
