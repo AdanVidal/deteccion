@@ -18,9 +18,9 @@
 <body>
     <h1>Iniciar sesión en Facebook para detectar Emociones</h1>
     <h2>hola banda</h2>
-	
-	<script>
-        
+    
+    
+    <script>
     
   function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
     console.log('statusChangeCallback');
@@ -57,9 +57,13 @@
   };
  
   function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-    console.log('Bienvenido!  Fetching your information.... ');
+    console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
-      console.log('Successful loginnnn for: ' + response.name + 'http://graph.facebook.com/'+
+      console.log('Holaaaa: ' + response.name);
+      $('#login').after(div_session);
+          $('#login').remove();
+          $('#facebook-session strong').text("Bienvenido: "+response.name);
+          $('#facebook-session img').attr('src','http://graph.facebook.com/'+
                   response.id + '/picture?type=large');
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
@@ -67,19 +71,6 @@
   }
 
 </script>
-
-
-<!-- The JS SDK Login Button -->
-<fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
-
-<!-- Load the JS SDK asynchronously -->
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-	
-	
     <!--
     <a href="#" id="login" class="btn btn-primary">Iniciar sesión</a>
     <script>
